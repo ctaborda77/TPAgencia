@@ -1,0 +1,28 @@
+<div class="form-group">
+    <label for="">Buscar moto por marca</label>
+    <input class="form-control" placeholder='Ingrese la marca...' type="text" name='buscar' id='buscar' />
+</div>
+<div class="actions">
+    <button id='boton-buscar' class='btn btn-primary'>Realizar busqueda</button>
+</div>
+<table class='table '>
+    
+    <thead class='thead-dark'>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Cilindrada</th>
+            <th>Año</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each motos}}
+            <tr>
+                <td>{{marca}}</td>
+                <td>{{modelo}}</td>
+                <td>{{cilindrada}}</td>
+                <td>{{año}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
