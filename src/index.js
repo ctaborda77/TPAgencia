@@ -15,7 +15,6 @@ firebase.initializeApp(firebaseConfig);
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 const database = firebase.firestore();
 
-
 var root = null;
 var useHash = false;
 
@@ -28,7 +27,6 @@ router
 		'busqueda': () => busqueda (database),
 	})
 	.resolve();
-
 
 catchLinks(window, function (href) {
     router.navigate(href);
@@ -55,15 +53,32 @@ var uiConfig = {
 	],
 	// Terms of service url.
 	tosUrl: 'terms'
+	
   };
-
- 
 
   firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
+		var photoURL = user.photoURL;
+		var displayName = user.displayName;
+		var email = user.email;
+		console.log(photoURL);
+		console.log(displayName);
+		console.log(email);
+		
+
 		if (document.getElementById('logueado')) document.getElementById('logueado').style.display = 'block';
 		if (document.getElementById('login')) document.getElementById('login').style.display = 'none';
+		
+		document.getElementById('botonlogout').addEventListener('click', function() {
+			firebase.auth().signOut().then(function() {
+				location.reload(true);
+		    }).catch(function(error) {
+			  // An error happened.
+		    });/*authService.signOut()*/
+		})
 	} else {
 		ui.start('#login', uiConfig);
 	}
-  });
+	});
+
+	

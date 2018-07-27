@@ -24,7 +24,7 @@ const crearNuevaMoto = (e) => {
     cilindrada: document.getElementById('cilindrada').value,
     año: document.getElementById('año').value,
   };
-console.log(moto);
+//console.log(moto);
 
 database.collection("motos").doc(moto.id).set({
     marca: moto.marca,
