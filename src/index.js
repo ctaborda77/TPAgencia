@@ -15,6 +15,7 @@ firebase.initializeApp(firebaseConfig);
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 const database = firebase.firestore();
 
+
 var root = null;
 var useHash = false;
 
@@ -27,6 +28,7 @@ router
 		'busqueda': () => busqueda (database),
 	})
 	.resolve();
+
 
 catchLinks(window, function (href) {
     router.navigate(href);
@@ -41,44 +43,45 @@ var uiConfig = {
 	  uiShown: function() {
 		// The widget is rendered.
 		// Hide the loader.
-		document.getElementById('loader').style.display = 'none';
+		//document.getElementById('loader').style.display = 'none';
+		document.getElementById('logout').style.display = 'none';
+	
 	  }
 	},
 	// Will use popup for IDP Providers sign-in flow instead of the default, redirect.
 	signInFlow: 'popup',
-	signInSuccessUrl: 'listado',
+	signInSuccessUrl: 'main',
 	signInOptions: [
 	  // Leave the lines as is for the providers you want to offer your users.
 	  firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 	],
 	// Terms of service url.
 	tosUrl: 'terms'
-	
   };
+
+
+
+	function mylogout() {
+		
+		firebase.auth().signOut().then(function() {
+			// Sign-out successful.
+			location.reload(true);
+	
+			
+		}).catch(function(error) {
+			// An error happened.
+		});
+		console.warn("on click");
+}
 
   firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		var photoURL = user.photoURL;
-		var displayName = user.displayName;
-		var email = user.email;
-		console.log(photoURL);
-		console.log(displayName);
-		console.log(email);
-		
-
-		if (document.getElementById('logueado')) document.getElementById('logueado').style.display = 'block';
+		// User is signed in.
+		if (document.getElementById('logout')) {document.getElementById('logout').style.display = 'block';
+																						document.getElementById('logueado').style.display = 'block';
+																						document.getElementById('b_logout').addEventListener("click", mylogout);}
 		if (document.getElementById('login')) document.getElementById('login').style.display = 'none';
-		
-		document.getElementById('botonlogout').addEventListener('click', function() {
-			firebase.auth().signOut().then(function() {
-				location.reload(true);
-		    }).catch(function(error) {
-			  // An error happened.
-		    });/*authService.signOut()*/
-		})
 	} else {
 		ui.start('#login', uiConfig);
 	}
-	});
-
-	
+  });

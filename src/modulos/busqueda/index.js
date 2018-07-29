@@ -36,7 +36,7 @@ const realizarBusqueda = () => {
 		const datosmotos = element.data();
 		datosmotos.id = element.key;
 		motos.push(datosmotos);
-		//console.log(element.data());
+		console.log(element.data());
 		});
 		render();
 	})

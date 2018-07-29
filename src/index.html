@@ -10,26 +10,32 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
   </head>
   <body>
-      <div id="logueado" class="container" style='display: none;'>
+    <div id="logueado" class="container" style='display: none;'>
+        <div id="logout" class="container">
+          <div class="row justify-content-end">
+              <button id="b_logout" class="btn btn-dark btn-sm" data-provider-id="google.com" data-upgraded=",MaterialButton">
+                  <span class="firebaseui-idp-icon-wrapper"><img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"></span>
+                  <span class="firebaseui-idp-text firebaseui-idp-text-long">Sign Out</span>
+                  <span class="firebaseui-idp-text firebaseui-idp-text-short">Google</span>
+              </button>
+          </div>
+        </div>
         <h1><center>🏍 🏍 Agencia de Motos 🏍 🏍</center></h1>
-        <img width="100" id="imagen" src=""/>
-        <button id="botonlogout"class="btn btn-warning btn-sm">Logout</button>
-        <nav class='nav-bar navbar-expand-lg navbar-light bg-light'>
+        <nav class='nav-bar navbar-expand-lg navbar-light bg-warning rounded text-uppercase'>
           <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" href="/listado">catálogo</a>
+                <a class="nav-link active text-primary" href="/listado">catálogo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/busqueda">busqueda</a>
+                <a class="nav-link active text-primary" href="/busqueda">busqueda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/nuevo">nuevo</a>
+                <a class="nav-link active text-primary" href="/nuevo">nuevo</a>
               </li>
           </ul>
         </nav>
-        <section class='content' id='main'></section>
-        
-      </div>
-      <div id="login"></div>
+        <section class='content mt-2' id='main'></section>
+    </div>
+    <div id="login"></div>
   </body>
 </html>
